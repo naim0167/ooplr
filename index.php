@@ -2,16 +2,13 @@
 require_once 'core/init.php';
 
 //DB::getInstance;
-$user = DB::getInstance()->get('users', array('username', '=', 'naim'));
+//$userInsert = DB::getInstance()->insert('users', array(
+//    'username' => 'Dean',
+//    'password' => 'password',
+//    'salt' => 'salt'
+//));
 
-if(!$user->count()) {
-    echo 'No User';
-} else {
-    echo 'OK!';
-}
-
-//if($users->count()){
-//    foreach ($users as $user){
-//        echo $user->username;
-//    }
-//}
+$userInsert = DB::getInstance()->update('users', 3 , array(
+    'password' => 'newpassword',
+    'username' => 'Sam'
+));
