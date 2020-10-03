@@ -2,7 +2,7 @@
 require_once 'core/init.php';
 
 if (Input::exists()) {
-    if (Token::check(Input::get('token'))) {
+    if (Token::check(Input::ge('token'))) {
 
         $validate = new Validate();
         $validation = $validate->check($_POST, array(
@@ -29,7 +29,8 @@ if (Input::exists()) {
         ));
 
         if($validation->passed()) {
-            echo 'Passed';
+            Session::flash('success', 'You registered successfully!');
+            header('Location: index.php');
         } else {
             foreach ($validation->errors() as $error) {
                 echo $error, '<br>';
