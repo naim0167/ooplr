@@ -15,18 +15,9 @@ if ($user->isLoggedIn()) {
         <li><a href="logout.php">Log Out</a></li>
     </ul>
 <?php
+    if($user->hasPermission('admin')) {
+        echo '<p> You are an administrator </p>';
+    }
 } else {
     echo '<p> You need to <a href="login.php">log in</a> or <a href="register.php">register</a> </p>';
 }
-//$anotheruser = new User(); //another user
-//DB::getInstance;
-//$userInsert = DB::getInstance()->insert('users', array(
-//    'username' => 'Dean',
-//    'password' => 'password',
-//    'salt' => 'salt'
-//));
-
-//$userInsert = DB::getInstance()->update('users', 3 , array(
-//    'password' => 'newpassword',
-//    'username' => 'Sam'
-//));

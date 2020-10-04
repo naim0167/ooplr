@@ -41,7 +41,7 @@ if (Input::exists()) {
                     'salt' => $salt,
                     'name' => Input::get('name'),
                     'joined' => date('Y-m-d H:i:s'),
-                    'groupa' => 1
+                    'group' => 1
                 ));
 
                 Session::flash('home', 'You have been registered and can now login!');
