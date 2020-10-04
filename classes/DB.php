@@ -14,6 +14,7 @@ class DB{
         }
     }
 
+    //get Instance
     public static function getInstance(){
         if(!isset(self::$_instance)){
             self::$_instance = new DB();
@@ -21,6 +22,7 @@ class DB{
         return self::$_instance;
     }
 
+    //pdo prepare & execute query
     public function query($sql, $params = array()) {
         $this->_error = false;
         if($this->_query = $this->_pdo->prepare($sql)) {
@@ -43,6 +45,7 @@ class DB{
         return $this;
     }
 
+    //making an action query
     public function action($action, $table, $where = array()){
         if(count($where) === 3) {
             $operators = array('=', '>', '<', '>=', '<=');
@@ -61,14 +64,17 @@ class DB{
         return false;
     }
 
+    //get all from table
     public function get($table, $where) {
         return $this->action('SELECT *', $table, $where);
     }
 
+    //Delete from table
     public function delete($table, $where) {
         return $this->action('DELETE', $table, $where);
     }
 
+    //Insert into table
     public function insert($table, $fields = array()) {
             $keys = array_keys($fields);
             $values = '';
@@ -90,6 +96,7 @@ class DB{
         return false;
     }
 
+    //Update into table
     public function update($table, $id, $fields) {
         $set ='';
         $x =1;
@@ -108,18 +115,22 @@ class DB{
         return false;
     }
 
+    //results
     public function results() {
         return $this->_results;
     }
 
+    //first
     public function first() {
         return $this->results()[0];
     }
 
+    //error
     public function error(){
         return $this->_error;
     }
 
+    //counting items/fields
     public function count() {
         return $this->_count;
     }
